@@ -1,0 +1,12 @@
+name: Keep Upstash Alive
+on:
+  schedule:
+    - cron: '0 0 */7 * *'
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Redis grok2api
+        run: |
+          curl https://major-raptor-66514.upstash.io/ping \
+            -H "Authorization: Bearer ${{ secrets.GROK2API }}"
